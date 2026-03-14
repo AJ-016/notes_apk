@@ -1,6 +1,4 @@
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
   font-family: Arial, sans-serif;
@@ -23,9 +21,7 @@ body{
   margin-bottom:10px;
 }
 
-h1{
-  margin:0;
-}
+h1{margin:0;}
 
 .note-input{
   display:flex;
@@ -52,32 +48,24 @@ button{
   transition:0.2s;
 }
 
-#addNoteBtn{
-  background:#4CAF50;
-}
-#addNoteBtn:hover{
-  background:#3e8e41;
-}
+#addNoteBtn{background:#4CAF50;}
+#addNoteBtn:hover{background:#3e8e41;}
 
-.delete-btn{
-  background:#e74c3c;
-}
-.delete-btn:hover{
-  background:#c0392b;
-}
+.delete-btn{background:#e74c3c;}
+.delete-btn:hover{background:#c0392b;}
 
-.edit-btn{
-  background:#f39c12;
-}
-.edit-btn:hover{
-  background:#d68910;
-}
+.edit-btn{background:#f39c12;}
+.edit-btn:hover{background:#d68910;}
 
-.pin-btn{
-  background:#3498db;
+.pin-btn{background:#3498db;}
+.pin-btn:hover{background:#2980b9;}
+
+/* NEW: Color button style */
+.color-btn{
+  background:#1d18b0; /* purple */
 }
-.pin-btn:hover{
-  background:#2980b9;
+.color-btn:hover{
+  background:#221678; /* darker purple */
 }
 
 .note{
@@ -87,12 +75,8 @@ button{
   box-shadow:0 4px 10px rgba(0,0,0,0.1);
   transition:0.2s;
 }
-.note:hover{
-  transform:translateY(-2px);
-}
-.note p{
-  white-space:pre-wrap;
-}
+.note:hover{transform:translateY(-2px);}
+.note p{white-space:pre-wrap;}
 .note-buttons{
   margin-top:10px;
   display:flex;
@@ -130,6 +114,4 @@ body.dark-mode #searchInput{
   padding: 5px 10px;
   border-radius: 8px;
 }
-#themeToggle:hover {
-  background: rgba(0,0,0,0.1);
-}
+#themeToggle:hover {background: rgba(0,0,0,0.1);}
