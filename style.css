@@ -1,113 +1,155 @@
+/* Global box-sizing */
+*{
+  box-sizing:border-box;
+}
+
 body{
-font-family: Arial, sans-serif;
-background:#f4f4f4;
-display:flex;
-justify-content:center;
-padding:20px;
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  display:flex;
+  justify-content:center;
+  padding:20px;
+  color: #000;
 }
 
 .container{
-width:100%;
-max-width:500px;
+  width:100%;
+  max-width:500px;
+}
+
+/* Header with dark mode toggle */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
 
 h1{
-text-align:center;
+  margin:0;
 }
 
 .note-input{
-display:flex;
-flex-direction:column;
-gap:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 textarea{
-padding:10px;
-font-size:16px;
-border-radius:8px;
-border:1px solid #ccc;
-resize:none;
-height:80px;
+  padding:10px;
+  font-size:16px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  resize:none;
+  height:80px;
 }
 
+/* Buttons common style */
 button{
-padding:10px;
-border:none;
-border-radius:8px;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.2s;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.2s;
 }
 
-/* ADD NOTE BUTTON */
+/* Add Note Button */
 #addNoteBtn{
-background:#4CAF50;
+  background:#4CAF50;
 }
-
 #addNoteBtn:hover{
-background:#3e8e41;
+  background:#3e8e41;
 }
 
-/* DELETE BUTTON */
+/* Delete Button */
 .delete-btn{
-background:#e74c3c;
+  background:#e74c3c;
 }
-
 .delete-btn:hover{
-background:#c0392b;
+  background:#c0392b;
 }
 
-/* EDIT BUTTON */
+/* Edit Button */
 .edit-btn{
-background:#f39c12;
+  background:#f39c12;
 }
-
 .edit-btn:hover{
-background:#d68910;
+  background:#d68910;
 }
 
-button:hover{
-background:#45a049;
+/* Pin Button */
+.pin-btn{
+  background:#3498db;
+}
+.pin-btn:hover{
+  background:#2980b9;
 }
 
+/* Notes */
 .note{
-background:white;
-padding:15px;
-margin-top:15px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-transition:0.2s;
+  background:white;
+  padding:15px;
+  margin-top:15px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  transition:0.2s;
 }
-
 .note:hover{
-transform:translateY(-2px);
+  transform:translateY(-2px);
 }
-
 .note p{
-white-space:pre-wrap;
+  white-space:pre-wrap;
 }
-
 .note-buttons{
-margin-top:10px;
-display:flex;
-gap:10px;
+  margin-top:10px;
+  display:flex;
+  gap:10px;
 }
 
-.delete-btn{
-background:red;
-}
-
-.edit-btn{
-background:orange;
-}
-
+/* Search input */
 #searchInput{
-width:100%;
-padding:10px;
-margin-top:15px;
-border-radius:8px;
-border:1px solid #ccc;
-font-size:16px;
-box-sizing:border-box;
+  width:100%;
+  padding:10px;
+  margin-top:15px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+/* Dark mode */
+body.dark-mode{
+  background:#121212;
+  color:#f0f0f0;
+}
+body.dark-mode textarea,
+body.dark-mode #searchInput{
+  background:#1e1e1e;
+  color:#f0f0f0;
+  border:1px solid #444;
+}
+body.dark-mode .note{
+  background:#1e1e1e;
+  color:#f0f0f0;
+  box-shadow:0 4px 10px rgba(255,255,255,0.05);
+}
+body.dark-mode button#addNoteBtn{
+  background:#2ecc71;
+}
+
+/* Dark/Light mode toggle button */
+#themeToggle {
+  background: transparent; /* transparent background */
+  color: inherit;          /* inherits text color from body */
+  border: none;            /* remove border */
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+#themeToggle:hover {
+  background: rgba(0,0,0,0.1); /* subtle hover effect */
 }

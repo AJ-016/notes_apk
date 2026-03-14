@@ -2,21 +2,34 @@ const noteInput = document.getElementById("noteInput");
 const addBtn = document.getElementById("addNoteBtn");
 const notesContainer = document.getElementById("notesContainer");
 const searchInput = document.getElementById("searchInput");
+const themeToggle = document.getElementById("themeToggle");
 
-// Load notes from localStorage
+// Load saved notes
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
+// Load saved theme
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+    themeToggle.textContent = "☀️ Light Mode";
+}
+
+// Save notes to localStorage
 function saveNotes(){
     localStorage.setItem("notes", JSON.stringify(notes));
 }
 
+// Render notes
 function renderNotes(){
     notesContainer.innerHTML = "";
 
-    // Sort pinned notes to top
+    // Sort pinned notes first
     const sortedNotes = notes.slice().sort((a,b)=> b.pinned - a.pinned);
 
-    sortedNotes.forEach((noteObj, index)=>{
+    // Filter by search
+    sortedNotes
+    .filter(noteObj => noteObj.text.toLowerCase().includes(searchInput.value.toLowerCase()))
+    .forEach((noteObj, index)=>{
+
         const noteDiv = document.createElement("div");
         noteDiv.classList.add("note");
 
@@ -83,6 +96,31 @@ addBtn.onclick = ()=>{
 
 // Search notes
 searchInput.addEventListener("input", renderNotes);
+
+// Theme toggle
+function updateThemeButtonText() {
+    if(document.body.classList.contains("dark-mode")){
+        themeToggle.textContent = "🌙 Dark Mode"; // shows current mode
+    } else {
+        themeToggle.textContent = "☀️ Light Mode"; // shows current mode
+    }
+}
+
+// Load saved theme
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark-mode");
+}
+updateThemeButtonText();
+
+themeToggle.onclick = ()=>{
+    document.body.classList.toggle("dark-mode");
+
+    // save current mode
+    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+
+    // update button text
+    updateThemeButtonText();
+};
 
 // Initial render
 renderNotes();
