@@ -1,6 +1,7 @@
 const noteInput = document.getElementById("noteInput");
 const addBtn = document.getElementById("addNoteBtn");
 const notesContainer = document.getElementById("notesContainer");
+const searchInput = document.getElementById("searchInput");
 
 let notes = JSON.parse(localStorage.getItem("notes")) || [];
 
@@ -11,7 +12,9 @@ localStorage.setItem("notes", JSON.stringify(notes));
 function renderNotes(){
 notesContainer.innerHTML = "";
 
-notes.forEach((note, index)=>{
+notes
+.filter(note => note.toLowerCase().includes(searchInput.value.toLowerCase()))
+.forEach((note, index)=>{
 
 const noteDiv = document.createElement("div");
 noteDiv.classList.add("note");
@@ -73,3 +76,5 @@ noteInput.value = "";
 };
 
 renderNotes();
+
+searchInput.addEventListener("input", renderNotes);
