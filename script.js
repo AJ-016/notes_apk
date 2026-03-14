@@ -10,9 +10,9 @@ let notes = JSON.parse(localStorage.getItem("notes")) || [];
 // Theme functions
 function updateThemeButtonText() {
     if(document.body.classList.contains("dark-mode")){
-        themeToggle.textContent = "🌙 Dark Mode"; // shows current mode
+        themeToggle.textContent = "🌙 Dark Mode"; // current mode
     } else {
-        themeToggle.textContent = "☀️ Light Mode"; // shows current mode
+        themeToggle.textContent = "☀️ Light Mode"; // current mode
     }
 }
 
@@ -45,9 +45,19 @@ function renderNotes(){
         const noteDiv = document.createElement("div");
         noteDiv.classList.add("note");
 
+        // Note text
         const noteText = document.createElement("p");
         noteText.textContent = noteObj.text;
 
+        // Timestamp
+        const timestamp = document.createElement("small");
+        timestamp.textContent = noteObj.lastEdited ? `Last edited: ${noteObj.lastEdited}` : "";
+        timestamp.style.display = "block";
+        timestamp.style.marginTop = "5px";
+        timestamp.style.fontSize = "12px";
+        timestamp.style.color = "gray";
+
+        // Buttons container
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("note-buttons");
 
@@ -69,6 +79,7 @@ function renderNotes(){
             const newText = prompt("Edit your note", noteObj.text);
             if(newText !== null){
                 noteObj.text = newText;
+                noteObj.lastEdited = new Date().toLocaleString(); // update timestamp
                 saveNotes();
                 renderNotes();
             }
@@ -92,7 +103,9 @@ function renderNotes(){
         btnContainer.appendChild(editBtn);
         btnContainer.appendChild(deleteBtn);
 
+        // Assemble note
         noteDiv.appendChild(noteText);
+        noteDiv.appendChild(timestamp);
         noteDiv.appendChild(btnContainer);
 
         notesContainer.appendChild(noteDiv);
@@ -104,7 +117,13 @@ addBtn.onclick = ()=>{
     const noteText = noteInput.value.trim();
     if(noteText === "") return;
 
-    notes.push({text: noteText, pinned: false});
+    const timestamp = new Date().toLocaleString();
+    notes.push({
+        text: noteText,
+        pinned: false,
+        lastEdited: timestamp
+    });
+
     saveNotes();
     renderNotes();
     noteInput.value = "";
