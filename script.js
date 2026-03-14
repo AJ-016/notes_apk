@@ -131,3 +131,9 @@ addBtn.onclick = ()=>{
 
 searchInput.addEventListener("input", renderNotes);
 renderNotes();
+
+themeToggle.onclick = ()=>{
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("theme", document.body.classList.contains("dark-mode")?"dark":"light");
+    updateThemeButtonText();
+};

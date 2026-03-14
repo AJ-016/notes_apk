@@ -2,11 +2,16 @@
 
 body{
   font-family: Arial, sans-serif;
-  background:#333333;
+  background:#f4f4f4;  /* light theme default */
   display:flex;
   justify-content:center;
   padding:20px;
-  color: #f0f0f0;
+  color: #000;
+}
+
+body.dark-mode{
+  background:#333333;  /* dark theme background */
+  color:#f0f0f0;
 }
 
 .container{
